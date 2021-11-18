@@ -1,0 +1,111 @@
+def Linsearch(arr,x):      
+    for i in range(len(arr)):
+        if arr[i]==x:
+            return i
+    return -1
+
+def Sentsearch(arr,x):
+    l=len(arr)
+    arr.append(x)
+    i=0
+    while(arr[i]!=x):
+        i=i+1
+    if(i!=l):
+        return i
+    else:
+        return -1
+
+def Binsearch(arr,x):
+    low=0
+    high=len(arr)-1
+    m=0
+    while(low<=high):
+        m=(low+high)//2
+        if(x<arr[m]):
+            high = m-1
+        elif(x>arr[m]):
+            low = m+1
+        else:
+             return m
+	 
+    return -1
+
+
+def FibSearch(arr,key,n): 
+    b=0 
+    a=1 
+    f=b+a 
+    
+    while(f<n): 
+        b=a 
+        a=f 
+        f=b+a 
+    offset=-1;
+     
+    while(f>1): 
+        i=min(offset+b,n-1) 
+        if (arr[i]<key): 
+            f=a 
+            a=b
+            b=f-a
+            offset=i 
+   
+        elif(arr[i]>key): 
+            f=b 
+            a=a-b 
+            b=f-a
+    
+        else: 
+            return i 
+
+
+    return -1
+
+n=int(input(" Enter total number Of employee : " ))
+array=[]
+i=0
+for i in range(n):
+    item=int(input("Enter employee ID: "))
+    array.append(item)
+
+print("The employee ID of employee are ...\n")
+print(array)
+while(True):
+    print("Main Menu")
+    print("\n 1. Linear Search")
+    print("\n 2. Sentinel Search")
+    print("\n 3. Binary Search")
+    print("\n 4. Fibonacci Search")
+    print("\n 5. Exit")
+    choice=int(input("Enter your choice: "))
+    if(choice==1):
+        key=int(input("Enter the employee ID to search if employee has attended the training program or not?: "))
+        location=Linsearch(array,key)
+        if(location!=-1):
+            print("Yes, the employee attended the training program.")
+        else:
+            print("No, the employee has not attended the training program.")
+    elif(choice==2):
+        key=int(input("Enter the employee ID to search if employee has attended the training program or not?: "))
+        location=Sentsearch(array,key)
+        if(location!=-1):
+            print("Yes, the employee attended the training program.")
+        else:
+            print("No, the employee has not attended the training program.")
+    elif(choice==3):
+        key=int(input("Enter the employee ID to search if employee has attended the training program or not?: "))
+        location=Binsearch(array,key)
+        if(location !=-1):
+            print("Yes, the employee attended the training program")
+        else:
+            print("No, the employee has not attended the training program.")
+    elif(choice==4):
+        key = int(input("Enter the employee ID to search if employee has attended the training program or not?: "))
+        location = FibSearch(array,key,n)
+        if(location !=-1):
+            print("Yes, the employee attended the training program.")
+        else:
+            print("No, the employee has not attended the training program.")
+    else:
+        print("Exitting");
+        break
